@@ -1,0 +1,7 @@
+name: AutoclickerVerif
+authors: [William, Noksio]
+version: 1.0
+main: fr.ctlserv.william.autoclick.Autoclick
+commands:
+  verif:
+    aliases: [inspect]
