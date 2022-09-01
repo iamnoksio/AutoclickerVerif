@@ -6,7 +6,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.ctlserv.william.autoclick.customevents.AutoclickAlertEvent;
 
-
 public class CheckRunnable extends BukkitRunnable {
 	private int timeBetweenAlerts;
 	private int maxCps;
@@ -23,11 +22,10 @@ public class CheckRunnable extends BukkitRunnable {
 	public void run() {
 		for (PlayerWrapper wp : PlayerWrapper.players.values()){
 			int ping = wp.getPlayer().getPing();
-            double tps = Math.round(Autoclick.instance.getTps()*1e2)/1e2 ;
+            double tps = Math.round(Bukkit.spigot().getTPS()[0] * 1e2)/1e2 ;
             int AntiLag = (int)((20.0D - tps) * 2.0D);
             AntiLag += ping / 50;
-            if ((wp.clicks[0] >= maxCps + AntiLag) && (wp.lastAlert + timeBetweenAlerts * 1000L < System.currentTimeMillis()))
-            {
+            if ((wp.clicks[0] >= maxCps + AntiLag) && (wp.lastAlert + timeBetweenAlerts * 1000L < System.currentTimeMillis())) {
             	AutoclickAlertEvent event = new AutoclickAlertEvent(wp.pseudo, wp.clicks[0], ping , tps );
             	Bukkit.getServer().getPluginManager().callEvent(event);
             	wp.lastAlert = System.currentTimeMillis();

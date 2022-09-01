@@ -19,8 +19,7 @@ public class VerifRunnable extends BukkitRunnable {
 		for(Player verifier : VerifCommand.verifiers.keySet()){
 			if (verifier.getOpenInventory().getTopInventory() != null && verifier.getOpenInventory().getTopInventory().getTitle().startsWith("§cVerif >")){
 				String o = verifier.getOpenInventory().getTopInventory().getName().split("> ")[1];
-	            if (Bukkit.getPlayer(o) != null)
-	            {
+	            if (Bukkit.getPlayer(o) != null) {
 	              Player player = Bukkit.getPlayer(o);
 	              verifier.getOpenInventory().getTopInventory().setItem(0, player.getInventory().getHelmet());
 	              verifier.getOpenInventory().getTopInventory().setItem(1, player.getInventory().getChestplate());
@@ -36,7 +35,6 @@ public class VerifRunnable extends BukkitRunnable {
 	              
 	              ItemStack it1 = new ItemStack(Material.GOLD_BLOCK, Math.min(wp.clicks[0], 64));
 	              ItemMeta im1 = it1.getItemMeta();
-	              im1.setDisplayName(" ");
 	              im1.setDisplayName("§9Clics actuellement: " + wp.clicks);
 	              im.setLore(Arrays.asList(new String[] { "§9Clics", "§9actuellement: §f" + wp.maxClicks }));
 	              it1.setItemMeta(im1);
@@ -46,7 +44,7 @@ public class VerifRunnable extends BukkitRunnable {
 	              ItemMeta im2 = it2.getItemMeta();
 	              im2.setDisplayName("§6Ping: §f" + ping);
 	              
-		    	  Long l = wp.Connexion;
+		    	  Long l = wp.connexion;
 		    	  Long l2 = System.currentTimeMillis();
 		    	  long diffMs = l2 - l;       
 		    	  long diffHours = diffMs / (60 * 60 * 1000);
@@ -91,26 +89,17 @@ public class VerifRunnable extends BukkitRunnable {
 	            	  verifier.getOpenInventory().getTopInventory().setItem(slot, itemStack);
 	              }
 	              
+	              // KEEP THIS HERE
 	              ItemStack merite = new ItemStack(Material.DIAMOND, 1);
 	              ItemMeta im5 = merite.getItemMeta();
-	              im5.setDisplayName("§ePlugin crée par Williambraecky, Fondateur du CTLServ."); // KEEP THIS HERE
+	              im5.setDisplayName("§ePlugin crée par Williambraecky, Fondateur du CTLServ.");
 	              merite.setItemMeta(im5);
-		            //verifier.getOpenInventory().getTopInventory().setItem(45, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(46, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(47, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(48, merite);
 	              verifier.getOpenInventory().getTopInventory().setItem(49, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(50, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(51, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(52, merite);
-		            //verifier.getOpenInventory().getTopInventory().setItem(53, merite);
-	              
+	              // KEEP THIS HERE
 	            }
-			}else{
-				VerifCommand.verifiers.remove(verifier);
+	            continue;
 			}
+			VerifCommand.verifiers.remove(verifier);
 		}
-		
 	}
-
 }

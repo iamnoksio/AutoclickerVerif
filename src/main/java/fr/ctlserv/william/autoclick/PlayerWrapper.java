@@ -18,13 +18,13 @@ public class PlayerWrapper {
     public long lastBlockInteraction = 0;
     public long lastAlert = 0;
     
-    public long Connexion = 0L;
+    public long connexion = 0L;
     public String pseudo = "";
 	
 	public PlayerWrapper(Player p){
 		players.put(p.getUniqueId(), this);
 		this.pseudo = p.getName();
-		this.Connexion = System.currentTimeMillis();
+		this.connexion = System.currentTimeMillis();
 	}
 	
 	public String getName(){
@@ -40,10 +40,7 @@ public class PlayerWrapper {
 	}
 	
 	public static PlayerWrapper getByString(String name){
-		if (Bukkit.getPlayerExact(name) == null){
-			return null;
-		}
-		return players.get(Bukkit.getPlayerExact(name).getUniqueId());
+		return (Bukkit.getPlayerExact(name) == null ? null : players.get(Bukkit.getPlayerExact(name).getUniqueId()));
 	}
 	
 	public static void removePlayer(Player p){

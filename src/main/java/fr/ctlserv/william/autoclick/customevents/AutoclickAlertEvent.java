@@ -44,5 +44,4 @@ public class AutoclickAlertEvent extends PlayerEvent implements Cancellable{
 	public double getTPS(){
 		return TPS;
 	}
-
 }
