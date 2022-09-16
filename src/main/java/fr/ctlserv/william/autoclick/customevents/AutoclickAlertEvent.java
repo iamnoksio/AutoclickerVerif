@@ -18,6 +18,7 @@ public class AutoclickAlertEvent extends PlayerEvent implements Cancellable{
 		this.MS = MS;
 		this.TPS = TPS;
 	}
+	
 	@Override
 	public HandlerList getHandlers() {
 		return handlers;

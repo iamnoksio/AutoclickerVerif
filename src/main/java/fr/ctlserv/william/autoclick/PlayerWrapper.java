@@ -10,9 +10,7 @@ import net.minecraft.util.com.google.common.collect.Maps;
 
 public class PlayerWrapper {
 	public static Map<UUID, PlayerWrapper> players = Maps.newConcurrentMap();
-
 	public int[] clicks = {0, 0, 0, 0, 0, 0};
-
     public int nombreAlertesAutoClick = 0;
     public int maxClicks = 0;
     public long lastBlockInteraction = 0;

@@ -6,11 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Autoclick extends JavaPlugin{
-	public static Autoclick instance;
-
 	public void onEnable(){
 		System.out.println("[Autoclick] Starting to load.");
-		instance = this;
 		this.checkConfig(this.getConfig());
 		this.getServer().getPluginManager().registerEvents(new AutoclickListener(), this);
 		this.getCommand("verif").setExecutor(new VerifCommand(this.getConfig().getString("COMMAND_PERM")));

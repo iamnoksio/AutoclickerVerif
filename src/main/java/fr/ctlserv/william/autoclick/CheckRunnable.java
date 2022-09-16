@@ -22,7 +22,7 @@ public class CheckRunnable extends BukkitRunnable {
 	public void run() {
 		for (PlayerWrapper wp : PlayerWrapper.players.values()){
 			int ping = wp.getPlayer().getPing();
-            double tps = Math.round(Bukkit.spigot().getTPS()[0] * 1e2)/1e2 ;
+            double tps = Math.round(Bukkit.spigot().getTPS()[0] * 1e2)/1e2;
             int AntiLag = (int)((20.0D - tps) * 2.0D);
             AntiLag += ping / 50;
             if ((wp.clicks[0] >= maxCps + AntiLag) && (wp.lastAlert + timeBetweenAlerts * 1000L < System.currentTimeMillis())) {
@@ -30,17 +30,17 @@ public class CheckRunnable extends BukkitRunnable {
             	Bukkit.getServer().getPluginManager().callEvent(event);
             	wp.lastAlert = System.currentTimeMillis();
             	if (!event.isCancelled()){
-            	for (Player toAlert : Bukkit.getOnlinePlayers()){
-            		if (toAlert.hasPermission(Perm)){
-            			toAlert.sendMessage(AlertMessage.replace("%username", wp.pseudo)
-            		  .replace("%cps", String.valueOf(wp.clicks))
-            		  .replace("%ms", String.valueOf(ping))
-            		  .replace("%tps", String.valueOf(tps))
-            		  .replace("&", "§"));
-            		}
+	            	for (Player toAlert : Bukkit.getOnlinePlayers()){
+	            		if (toAlert.hasPermission(Perm)){
+	            			toAlert.sendMessage(AlertMessage.replace("%username", wp.pseudo)
+	            		  .replace("%cps", String.valueOf(wp.clicks))
+	            		  .replace("%ms", String.valueOf(ping))
+	            		  .replace("%tps", String.valueOf(tps))
+	            		  .replace("&", "§"));
+	            		}
+	            	}
+	                wp.nombreAlertesAutoClick += 1; 
             	}
-                wp.nombreAlertesAutoClick += 1; 
-            }
             }
             wp.clicks[5] = wp.clicks[4];
             wp.clicks[4] = wp.clicks[3];
